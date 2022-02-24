@@ -34,6 +34,8 @@ export const simpleTokenizer = (text: string): string[] =>
   text
     .toLowerCase()
     .replace(/[^\w\d]/g, ' ')
+    .replace(/(<([^>]+)>)/gi, '')
+    .trim()
     .split(' ')
     .filter((word: string) => word.length > 3)
     .filter(

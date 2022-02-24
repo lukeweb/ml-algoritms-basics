@@ -1,10 +1,13 @@
 import { Logger } from 'pino';
 import { KNNAlgorithm } from '../algorithms/knn';
 import { KMeansAlgorithm } from '../algorithms/k-means';
+import { runBayesAlgorithm } from './bayes-runner';
 
 export const runAlgorithms = (logger: Logger): void => {
   runKMeansAlgorithm(logger.child({ name: 'K-means algorithm' }));
   runKNNAlgorithm(logger.child({ name: 'K-NN algorithm' }));
+
+  runBayesAlgorithm(logger.child({ name: 'Bayes algorithm' }));
 };
 
 export const runKMeansAlgorithm = (logger: Logger): void => {

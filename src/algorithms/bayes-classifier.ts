@@ -13,15 +13,28 @@ export class BayesClassifier implements BayesClassifierInterface {
   }
 
   /**
+   * Algorithm training based on the document
+   *
+   * @param label string
+   * @param text  string
+   */
+  train(label: string, text: string): void {
+    this.incrementLabelDocumentCount(label);
+    this.tokenizer(text).forEach((token: string) =>
+      this.incrementTokenCount(token, label),
+    );
+  }
+
+  /**
    * For passed text input, method predict to which category it will belong to.
    *
-   * @param text
+   * @param text string
    * @returns Prediction
    */
   predict(text: string): Prediction {
     const probabilities: LabelProbability[] =
       this.calculateAllLabelProbabilities(text);
-    const best: LabelProbability = probabilities[0];
+    const best: LabelProbability = probabilities.shift();
 
     return {
       label: best.label,
@@ -51,8 +64,8 @@ export class BayesClassifier implements BayesClassifierInterface {
    * Based on the document divided to tokens, method calculates probability that
    * given document has passed label.
    *
-   * @param label
-   * @param tokens
+   * @param label string
+   * @param tokens string
    * @returns number
    */
   calculateLabelProbability(label: string, tokens: string[]): number {
@@ -77,8 +90,8 @@ export class BayesClassifier implements BayesClassifierInterface {
    * Method calculates the probability that document will have given label
    * if given token is present in it based on passed token and label.
    *
-   * @param token
-   * @param label
+   * @param token string
+   * @param label string
    * @returns number
    */
   calculateTokenScore(token: string, label: string): number {
@@ -128,7 +141,7 @@ export class BayesClassifier implements BayesClassifierInterface {
   /**
    * Increments of all documents for the given category.
    *
-   * @param label
+   * @param label string
    */
   incrementLabelDocumentCount(label: string): void {
     this.database.labels[label] = this.getLabelDocumentCount(label) + 1;
@@ -138,7 +151,7 @@ export class BayesClassifier implements BayesClassifierInterface {
    * Return number registered for the given category.
    * If label is null it returns number of all used documents for learning.
    *
-   * @param label
+   * @param label string
    * @returns number
    */
   getLabelDocumentCount(label?: string): number {
@@ -153,8 +166,8 @@ export class BayesClassifier implements BayesClassifierInterface {
   /**
    * Increments number of token occurrences for the given label.
    *
-   * @param token
-   * @param label
+   * @param token string
+   * @param label string
    * @returns number
    */
   incrementTokenCount(token: string, label: string): number {
@@ -170,8 +183,8 @@ export class BayesClassifier implements BayesClassifierInterface {
    * Returns number of occurrences passed token for the given label.
    * If no label was passed, returns how many times token showed in data collection for learning.
    *
-   * @param token
-   * @param label
+   * @param token string
+   * @param label string
    * @returns number
    */
   getTokenCount(token: string, label?: string): number {
@@ -185,6 +198,7 @@ export class BayesClassifier implements BayesClassifierInterface {
 }
 
 export interface BayesClassifierInterface {
+  train(label: string, text: string): void;
   predict(text: string): Prediction;
   calculateAllLabelProbabilities(text: string): LabelProbability[];
   calculateLabelProbability(label: string, tokens: string[]): number;
@@ -202,7 +216,9 @@ export interface BayesDatabase {
 }
 
 export interface Token {
-  [p: string]: unknown;
+  [p: string]: {
+    [p: string]: number;
+  };
 }
 
 export interface Label {
