@@ -2804,6 +2804,11 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+libsvm-ts@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/libsvm-ts/-/libsvm-ts-0.0.8.tgz#7a7933aec3ce20c02e6d03b5ed53b1bb49d56141"
+  integrity sha512-/NnumI1ME6hKBiAx3oS5/GlBQJnr7k9QukusQUwALDolpY7JN0yly5OoGJX0r9bDnyPicJN+tvxVMyOjkwEDVg==
+
 lines-and-columns@^1.1.6:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
@@ -2933,6 +2938,11 @@ minimist@^1.2.0, minimist@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+
+ml-dataset-iris@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/ml-dataset-iris/-/ml-dataset-iris-1.2.1.tgz#34d558d610e432751546caf485cc10c5bce1fc37"
+  integrity sha512-7GO+Xk382d+HhVgjebaQnJ4Tcm8+uaL9Mc76UdxhBAU0aFWs6JDjINZLnrlZ0KDiIi9Erc52bD26QOvYsG7Nnw==
 
 mri@1.1.4:
   version "1.1.4"
