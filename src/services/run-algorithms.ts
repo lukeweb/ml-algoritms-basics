@@ -1,11 +1,12 @@
-import { isArray } from 'lodash';
 import { Logger } from 'pino';
 import { KNNAlgorithm } from '../algorithms/knn';
 import { KMeansAlgorithm } from '../algorithms/k-means';
+import { runSVM } from '../algorithms/svm';
 
 export const runAlgorithms = (logger: Logger): void => {
   runKMeansAlgorithm(logger.child({ name: 'K-means algorithm' }));
   runKNNAlgorithm(logger.child({ name: 'K-NN algorithm' }));
+  runSVM(logger.child({ name: 'SVM Algorithm' }));
 };
 
 export const runKMeansAlgorithm = (logger: Logger): void => {
@@ -28,7 +29,7 @@ export const runKMeansAlgorithm = (logger: Logger): void => {
 
   logger.info('Process result:');
   Object.keys(result).forEach((key: string) => {
-   logger.info({ [key]: result[key] });
+    logger.info({ [key]: result[key] });
   });
   logger.info('=====================  END K-MEANS  =======================');
 };

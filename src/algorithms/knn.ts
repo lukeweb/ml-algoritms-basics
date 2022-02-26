@@ -13,7 +13,7 @@ export class KNNAlgorithm implements KNNInterface {
 
   /**
    * Method runs algorithm and choses element from the map that got highest number of votes
-   * 
+   *
    * @param point number[]
    * @returns Prediction
    */
@@ -42,7 +42,7 @@ export class KNNAlgorithm implements KNNInterface {
    * and pushes it to map array with its label.
    * Generated map can hold k elements (k is passed as constructor param) for more efficient work
    * on big sets of data.
-   * 
+   *
    * @param point number[]
    * @returns map MapRecord[]
    */
