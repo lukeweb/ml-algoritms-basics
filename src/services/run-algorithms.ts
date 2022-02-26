@@ -2,11 +2,13 @@ import { Logger } from 'pino';
 import { KNNAlgorithm } from '../algorithms/knn';
 import { KMeansAlgorithm } from '../algorithms/k-means';
 import { runSVM } from '../algorithms/svm';
+import { runRandomForest } from '../algorithms/random-forest';
 
-export const runAlgorithms = (logger: Logger): void => {
+export const runAlgorithms = async (logger: Logger): Promise<void> => {
   runKMeansAlgorithm(logger.child({ name: 'K-means algorithm' }));
   runKNNAlgorithm(logger.child({ name: 'K-NN algorithm' }));
-  runSVM(logger.child({ name: 'SVM Algorithm' }));
+  await runSVM(logger.child({ name: 'SVM Algorithm' }));
+  runRandomForest(logger.child({ name: 'Random forest Algorithm' }));
 };
 
 export const runKMeansAlgorithm = (logger: Logger): void => {

@@ -6,7 +6,7 @@ const logger: Logger = pino({ name: 'Main', level: 'debug' });
 (async () => {
   try {
     logger.info('Starting ML training application... 👋');
-    runAlgorithms(logger);
+    await runAlgorithms(logger);
   } catch (err) {
     logger.error(err);
     process.nextTick(() => process.exit(1));
