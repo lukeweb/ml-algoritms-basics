@@ -7,7 +7,7 @@ const irisLabels = IrisDataset.getClasses().map((element: string) =>
   IrisDataset.getDistinctClasses().indexOf(element),
 );
 
-const calculateLoss = (expected: number[], actual: number[]): number => {
+export const calculateLoss = (expected: number[], actual: number[]): number => {
   let incorrect = 0;
 
   for (let i = 0; i < expected.length; i++) {
